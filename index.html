@@ -14099,7 +14099,7 @@ div.jp-OutputPrompt {
 <div class="slides"><section><section>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h1 id="How-to-host-Jupyter-Notebook-slides-on-Github">How to host Jupyter Notebook slides on Github<a class="anchor-link" href="#How-to-host-Jupyter-Notebook-slides-on-Github">&#182;</a></h1><p><em>Minimal efforts to make slides and host html file to Github</em></p>
+<h1 id="How-to-host-Jupyter-Notebook-slides-on-Github">How to host Jupyter Notebook slides on Github<a class="anchor-link" href="#How-to-host-Jupyter-Notebook-slides-on-Github">&#182;</a></h1><p><em>Minimal efforts to make slides and host an html file on Github</em></p>
 
 </div>
 </div></section></section><section><section>
@@ -14107,8 +14107,8 @@ div.jp-OutputPrompt {
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>There are two parts to this article:</p>
 <ol>
-<li>How to turn your Jupyter Notebooks into a slideshow and output to a html file. </li>
-<li>How to host a html file on Github. </li>
+<li>How to turn your Jupyter Notebooks into a slideshow and output to an html file. </li>
+<li>How to host an html file on Github. </li>
 </ol>
 
 </div>
@@ -14116,25 +14116,32 @@ div.jp-OutputPrompt {
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h2 id="Jupyter-Notebook-slides">Jupyter Notebook slides<a class="anchor-link" href="#Jupyter-Notebook-slides">&#182;</a></h2><p>First, let's create a new enviornment <code>slideshow</code>, install a Jupyter notebook extension RISE, and launch Jupyter Notebook:</p>
-
-<pre><code>conda create -n slideshow -c conda-forge python=3.9 rise
+<div class="highlight"><pre><span></span>conda create -n slideshow -c conda-forge <span class="nv">python</span><span class="o">=</span><span class="m">3</span>.9 rise
 conda activate slideshow
-jupyter notebook</code></pre>
-<p>Then create a Jupyter Notebook file as usual. Click View-Toolbar-Slideshow to define the slide type for each cell. RISE creates a new button “Enter/Exit Live Reveal Slideshow” in the top right of the toolbar. Click this tool bar, you will be able to view your notebook as a slideshow.</p>
+jupyter notebook
+</pre></div>
+<p>Then create a Jupyter Notebook file as usual:</p>
+<ul>
+<li>Click View-Toolbar-Slideshow to define the slide type for each cell.</li>
+<li>RISE creates a button “Enter/Exit Live Reveal Slideshow” in the top right of the toolbar.</li>
+<li>Click this tool bar, you will be able to view your notebook as a slideshow. </li>
+</ul>
 
 </div>
 </div></section></section><section><section>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h2 id="Slides-to-html">Slides to html<a class="anchor-link" href="#Slides-to-html">&#182;</a></h2><p>If you have code cells and would like to show all the code cells, use:</p>
-
-<pre><code>jupyter nbconvert github_page_example.ipynb --to slides --stdout &gt; index.html</code></pre>
-<p>If you would like to hide all the code cells:</p>
-
-<pre><code>jupyter nbconvert github_page_example.ipynb --no-input --no-prompt --to slides --stdout &gt; index.html</code></pre>
-<p>If you would like to hide code for certain cells, we can add a tag for those code cells via View - Cell Toolbar - Tags. Here I give the tag name "remove_input".</p>
-
-<pre><code>jupyter nbconvert github_page_example.ipynb --TagRemovePreprocessor.remove_input_tags "remove_input" --to slides --stdout &gt; index.html</code></pre>
+<div class="highlight"><pre><span></span>jupyter nbconvert github_page_example.ipynb --to slides --stdout &gt; index.html
+</pre></div>
+<p><br>
+If you would like to hide all the code cells:</p>
+<div class="highlight"><pre><span></span>jupyter nbconvert github_page_example.ipynb --no-input --no-prompt --to slides --stdout &gt; index.html
+</pre></div>
+<p><br>
+If you would like to hide code for certain cells, we can add a tag for those code cells via View - Cell Toolbar - Tags. Here I use the tag "remove_input".</p>
+<div class="highlight"><pre><span></span>jupyter nbconvert github_page_example.ipynb --TagRemovePreprocessor.remove_input_tags <span class="s2">&quot;remove_input&quot;</span> --to slides --stdout &gt; index.html
+</pre></div>
 
 </div>
 </div></section></section><section><section>
@@ -14213,18 +14220,38 @@ jupyter notebook</code></pre>
 </div></section></section><section><section>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Host-html-file-on-Github">Host html file on Github<a class="anchor-link" href="#Host-html-file-on-Github">&#182;</a></h2><p>To publish the html file on Github Pages, we need to create a new branch <code>gh-pages</code> and add the html file to that branch.</p>
-<p>Create new git repo with</p>
+<h2 id="Host-html-file-on-Github">Host html file on Github<a class="anchor-link" href="#Host-html-file-on-Github">&#182;</a></h2><p>To publish an html file on Github Pages, we need to push to <code>gh-pages</code> branch.</p>
+<p>Create new git repo locally with <code>gh-pages</code> branch:</p>
 
 <pre><code>git init
 git checkout -b gh-pages
 git add index.html
 git commit</code></pre>
-<p>And now push to Github</p>
+
+</div>
+</div></section></section><section><section>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Go to Github and create a new empty repo, and then push our files to the <code>gh-pages</code> branch.</p>
 
 <pre><code>git remote add origin git@github.com:YOUR_USER_NAME/YOUR_REPO_NAME.git
 git branch -M gh-pages
 git push -u origin gh-pages</code></pre>
+
+</div>
+</div></section></section><section><section>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Now you can see this slideshow hosted on a Github page:
+<a href="https://YOUR_USER_NAME.github.io/YOUR_REPO_NAME">https://YOUR_USER_NAME.github.io/YOUR_REPO_NAME</a></p>
+<p>Check mine out: <a href="https://sophiamyang.github.io/slides_github_pages/">https://sophiamyang.github.io/slides_github_pages/</a>.</p>
+
+</div>
+</div></section></section><section><section>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="References">References<a class="anchor-link" href="#References">&#182;</a></h2><p><a href="https://rise.readthedocs.io/en/stable/">https://rise.readthedocs.io/en/stable/</a></p>
+<p><a href="https://pages.github.com/">https://pages.github.com/</a></p>
 
 </div>
 </div></section></section>
